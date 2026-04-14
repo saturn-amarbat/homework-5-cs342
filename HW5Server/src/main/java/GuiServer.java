@@ -25,14 +25,13 @@ public class GuiServer extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		listItems = new ListView<String>();
+
 		serverConnection = new Server(data -> {
 			Platform.runLater(()->{
 				listItems.getItems().add(data.toString());
 			});
 		});
-
-		
-		listItems = new ListView<String>();
 
 		sceneMap = new HashMap<String, Scene>();
 		

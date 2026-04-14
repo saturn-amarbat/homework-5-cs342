@@ -243,6 +243,8 @@ public class Server {
             text = message.textContent;
         }
 
+        callback.accept("[Global] " + source.username + ": " + text);
+
         Message outbound = new Message(Message.Type.GLOBAL_CHAT, source.username, text);
         broadcast(outbound);
     }
@@ -260,6 +262,8 @@ public class Server {
         if (message.textContent != null) {
             text = message.textContent;
         }
+
+        callback.accept("[Private] " + source.username + " -> " + message.recipients + ": " + text);
 
         for (int i = 0; i < message.recipients.size(); i++) {
             String username = message.recipients.get(i);
@@ -306,6 +310,8 @@ public class Server {
         if (message.textContent != null) {
             text = message.textContent;
         }
+
+        callback.accept("[Group " + groupName + "] " + source.username + ": " + text);
 
         for (int i = 0; i < members.size(); i++) {
             String username = members.get(i);
